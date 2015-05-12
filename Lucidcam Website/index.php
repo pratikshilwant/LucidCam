@@ -1,4 +1,25 @@
 <!DOCTYPE html>
+<?php require_once("common/connection.php"); ?>
+<?php 
+	if(isset($_POST['signup']))
+	{	
+		
+		// name,email1, password1
+		
+		$email = $_POST['email'];
+		$sql = "INSERT INTO Users (Email) VALUES ('". $email . "')";
+		
+			if ($conn->query($sql) === TRUE) 
+			{
+				//echo "<SCRIPT>alert('Welcome ".$email."!!!')</SCRIPT>";
+			} 
+			else 
+			{
+				echo "Error: " . $sql . "<br>" . $conn->error;
+			}
+	}
+	
+ ?>
 <html>
 <head>
 	<script>
@@ -508,10 +529,12 @@
                </div><!--end:col-->
                
                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			    <form class="login" method="post" action="#">
                 	<p class="info-form">
-                  	<input id="email" type="text" aria-required="true" size="30" value="" name="email">
-                  	<button type="button" class="btn btn-primary btn-dark">Sign me up</button>
+                  	<input id="email" type="email" aria-required="true" size="30"  name="email" required>
+                  	<button type="submit" name="signup" class="btn btn-primary btn-dark">Sign me up</button>
                   </p>
+				</form>
                </div><!--end:col-->
                
                
